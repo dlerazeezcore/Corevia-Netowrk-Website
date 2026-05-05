@@ -153,7 +153,7 @@ export default function App() {
         </AnimatePresence>
       </header>
 
-      {/* Hero Section */}
+      {/* Main Hero Section */}
       <section id="home" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-screen">
         <div className="absolute inset-0 z-0">
           <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-[#D8FF44]/10 blur-[120px] rounded-full pointer-events-none" />
