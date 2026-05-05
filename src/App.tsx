@@ -21,32 +21,32 @@ export default function App() {
     {
       title: "Business Consultancy",
       description: "We support companies with operational planning, system selection, workflow design, and digital transformation guidance.",
-      icon: <Briefcase className="w-6 h-6 text-[#D8FF44]" />
+      icon: Briefcase
     },
     {
       title: "Accounting Software Setup",
       description: "We help businesses configure and implement accounting platforms, organize charts of accounts, and build reliable financial workflows.",
-      icon: <Calculator className="w-6 h-6 text-[#D8FF44]" />
+      icon: Calculator
     },
     {
       title: "Administration & HR",
       description: "We assist with administrative structures, HR systems, employee management processes, and internal documentation.",
-      icon: <Users className="w-6 h-6 text-[#D8FF44]" />
+      icon: Users
     },
     {
       title: "PBX & Communication Systems",
       description: "We set up PBX, call management, business phone systems, and communication tools that help teams stay connected.",
-      icon: <Phone className="w-6 h-6 text-[#D8FF44]" />
+      icon: Phone
     },
     {
       title: "Sales & Support Channels",
       description: "We implement sales pipelines, customer support channels, CRM tools, ticketing systems, and client communication workflows.",
-      icon: <Headset className="w-6 h-6 text-[#D8FF44]" />
+      icon: Headset
     },
     {
       title: "Travel Technology",
       description: "Through our subsidiary Peak Travel, we develop and support travel technology products such as Tulip Booking.",
-      icon: <Map className="w-6 h-6 text-[#D8FF44]" />
+      icon: Map
     }
   ];
 
@@ -56,6 +56,26 @@ export default function App() {
     setTimeout(() => setFormStatus('idle'), 5000);
   };
 
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const href = e.currentTarget.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        // 96px is equivalent to h-24 (header height)
+        const offsetTop = element.getBoundingClientRect().top + window.scrollY - 96;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white font-sans selection:bg-[#D8FF44] selection:text-[#0A0A0A]">
       {/* Header */}
@@ -63,7 +83,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-24">
             <div className="flex-shrink-0 flex items-center">
-              <a href="#home">
+              <a href="#home" onClick={handleAnchorClick}>
                 <img 
                   src="/assets/corevia/corevia-network-logo.svg" 
                   alt="Corevia Network" 
@@ -82,6 +102,7 @@ export default function App() {
                 <a
                   key={item.name}
                   href={item.href}
+                  onClick={handleAnchorClick}
                   className="text-sm font-medium text-gray-300 hover:text-[#D8FF44] transition-colors relative group"
                 >
                   {item.name}
@@ -121,7 +142,7 @@ export default function App() {
                     key={item.name}
                     href={item.href}
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-[#0A0A0A] hover:bg-[#D8FF44] transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={handleAnchorClick}
                   >
                     {item.name}
                   </a>
@@ -137,6 +158,7 @@ export default function App() {
         <div className="absolute inset-0 z-0">
           <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-[#D8FF44]/10 blur-[120px] rounded-full pointer-events-none" />
           <div className="absolute top-1/2 -right-1/4 w-1/2 h-1/2 bg-[#173FFF]/10 blur-[120px] rounded-full pointer-events-none" />
+          <div className="absolute inset-0 backdrop-blur-sm pointer-events-none" />
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -174,13 +196,15 @@ export default function App() {
             >
               <a 
                 href="#services" 
-                className="inline-flex justify-center items-center px-8 py-4 rounded-full bg-[#D8FF44] text-[#0A0A0A] font-bold text-lg hover:bg-[#D3FF2B] transition-transform hover:scale-105 shadow-[0_0_20px_rgba(216,255,68,0.3)]"
+                onClick={handleAnchorClick}
+                className="inline-flex justify-center items-center px-8 py-4 rounded-full bg-[#D8FF44] text-[#0A0A0A] font-bold text-lg hover:bg-[#E4FF66] transition-all duration-300 hover:scale-105 shadow-[0_0_15px_rgba(216,255,68,0.2)] hover:shadow-[0_0_30px_rgba(216,255,68,0.5)]"
               >
                 Explore Our Services
               </a>
               <a 
                 href="#contact" 
-                className="inline-flex justify-center items-center px-8 py-4 rounded-full bg-transparent border-2 border-[#4A4A4A] text-white font-bold text-lg hover:border-[#D8FF44] hover:text-[#D8FF44] transition-colors"
+                onClick={handleAnchorClick}
+                className="inline-flex justify-center items-center px-8 py-4 rounded-full bg-transparent border-2 border-[#4A4A4A] text-white font-bold text-lg hover:border-[#D8FF44] hover:text-[#D8FF44] hover:scale-105 transition-all duration-300"
               >
                 Contact Us
               </a>
@@ -213,12 +237,12 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-[#1A1A1A] border border-[#4A4A4A]/50 rounded-2xl p-8 hover:-translate-y-2 hover:shadow-[0_10px_30px_-15px_rgba(216,255,68,0.2)] hover:border-[#D8FF44] transition-all duration-300 group relative overflow-hidden"
+                className="bg-[#1A1A1A] border border-[#4A4A4A]/50 rounded-2xl p-8 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(216,255,68,0.15)] hover:border-[#D8FF44]/70 transition-all duration-300 group relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#D8FF44]/5 rounded-bl-[100px] -z-0 transition-transform duration-500 group-hover:scale-110"></div>
                 
-                <div className="w-14 h-14 bg-[#222] rounded-xl flex items-center justify-center mb-6 border border-[#333] group-hover:border-[#D8FF44]/50 group-hover:bg-[#D8FF44]/10 transition-colors relative z-10">
-                  {service.icon}
+                <div className="w-14 h-14 bg-[#222] rounded-xl flex items-center justify-center mb-6 border border-[#333] group-hover:border-[#D8FF44]/60 group-hover:bg-[#D8FF44]/10 transition-all duration-300 relative z-10 group-hover:shadow-[0_0_15px_rgba(216,255,68,0.3)]">
+                  <service.icon className="w-6 h-6 text-gray-400 group-hover:text-[#D8FF44] transition-colors duration-300" />
                 </div>
                 <h3 className="font-heading text-2xl font-bold text-white mb-4 group-hover:text-[#D8FF44] transition-colors relative z-10">{service.title}</h3>
                 <p className="text-gray-400 leading-relaxed relative z-10">
@@ -263,7 +287,7 @@ export default function App() {
                   href="https://apps.apple.com/us/app/tulip-booking/id6759516330" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-white text-black hover:bg-[#D8FF44] transition-colors"
+                  className="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-white text-black hover:bg-[#D8FF44] hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(216,255,68,0.3)] transition-all duration-300"
                 >
                   <div className="flex flex-col items-start leading-none">
                     <span className="text-[10px] uppercase font-bold text-gray-600">Download on the</span>
@@ -274,7 +298,7 @@ export default function App() {
                   href="https://play.google.com/store/apps/details?id=com.theesim.app&hl=en-US" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-white text-black hover:bg-[#D8FF44] transition-colors"
+                  className="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-white text-black hover:bg-[#D8FF44] hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(216,255,68,0.3)] transition-all duration-300"
                 >
                   <div className="flex flex-col items-start leading-none">
                     <span className="text-[10px] uppercase font-bold text-gray-600">GET IT ON</span>
@@ -289,19 +313,27 @@ export default function App() {
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#173FFF]/10 via-transparent to-[#D8FF44]/5 opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="grid grid-cols-2 gap-6 p-8 w-full h-full relative z-10">
                   <div className="bg-[#222] rounded-2xl flex flex-col items-center justify-center gap-4 border border-[#333] hover:border-[#D8FF44] hover:bg-[#D8FF44]/5 transition-all duration-300 group/item">
-                    <Hotel className="w-12 h-12 text-gray-400 group-hover/item:text-[#D8FF44] transition-colors" />
+                    <motion.div animate={{ y: [0, -6, 0], scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}>
+                      <Hotel className="w-12 h-12 text-gray-400 group-hover/item:text-[#D8FF44] group-hover/item:drop-shadow-[0_0_8px_rgba(216,255,68,0.5)] transition-all duration-300" />
+                    </motion.div>
                     <span className="text-sm font-semibold text-gray-400 group-hover/item:text-white transition-colors tracking-wide uppercase">Hotels</span>
                   </div>
                   <div className="bg-[#222] rounded-2xl flex flex-col items-center justify-center gap-4 border border-[#333] hover:border-[#D8FF44] hover:bg-[#D8FF44]/5 transition-all duration-300 group/item">
-                    <Plane className="w-12 h-12 text-gray-400 group-hover/item:text-[#D8FF44] transition-colors" />
+                    <motion.div animate={{ y: [0, -6, 0], scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 0.5 }}>
+                      <Plane className="w-12 h-12 text-gray-400 group-hover/item:text-[#D8FF44] group-hover/item:drop-shadow-[0_0_8px_rgba(216,255,68,0.5)] transition-all duration-300" />
+                    </motion.div>
                     <span className="text-sm font-semibold text-gray-400 group-hover/item:text-white transition-colors tracking-wide uppercase">Flights</span>
                   </div>
                   <div className="bg-[#222] rounded-2xl flex flex-col items-center justify-center gap-4 border border-[#333] hover:border-[#D8FF44] hover:bg-[#D8FF44]/5 transition-all duration-300 group/item">
-                    <SmartphoneNfc className="w-12 h-12 text-gray-400 group-hover/item:text-[#D8FF44] transition-colors" />
+                    <motion.div animate={{ y: [0, -6, 0], scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 1 }}>
+                      <SmartphoneNfc className="w-12 h-12 text-gray-400 group-hover/item:text-[#D8FF44] group-hover/item:drop-shadow-[0_0_8px_rgba(216,255,68,0.5)] transition-all duration-300" />
+                    </motion.div>
                     <span className="text-sm font-semibold text-gray-400 group-hover/item:text-white transition-colors tracking-wide uppercase">eSIM</span>
                   </div>
                   <div className="bg-[#222] rounded-2xl flex flex-col items-center justify-center gap-4 border border-[#333] hover:border-[#D8FF44] hover:bg-[#D8FF44]/5 transition-all duration-300 group/item">
-                    <Car className="w-12 h-12 text-gray-400 group-hover/item:text-[#D8FF44] transition-colors" />
+                    <motion.div animate={{ y: [0, -6, 0], scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 1.5 }}>
+                      <Car className="w-12 h-12 text-gray-400 group-hover/item:text-[#D8FF44] group-hover/item:drop-shadow-[0_0_8px_rgba(216,255,68,0.5)] transition-all duration-300" />
+                    </motion.div>
                     <span className="text-sm font-semibold text-gray-400 group-hover/item:text-white transition-colors tracking-wide uppercase">Transfers</span>
                   </div>
                 </div>
@@ -328,10 +360,10 @@ export default function App() {
             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#4A4A4A] to-transparent transform -translate-x-1/2"></div>
             
             <motion.div 
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-gray-400 space-y-6 text-lg leading-relaxed md:pr-8"
             >
               <div className="w-12 h-12 bg-[#1A1A1A] border border-[#4A4A4A] rounded-xl flex items-center justify-center mb-6">
@@ -346,16 +378,16 @@ export default function App() {
             </motion.div>
             
             <motion.div 
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, delay: 0.2 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
               className="text-gray-400 space-y-6 text-lg leading-relaxed md:pl-8"
             >
-              <div className="w-12 h-12 bg-[#1A1A1A] border border-[#4A4A4A] rounded-xl flex items-center justify-center mb-6 md:ml-auto">
+              <div className="w-12 h-12 bg-[#1A1A1A] border border-[#4A4A4A] rounded-xl flex items-center justify-center mb-6">
                 <CheckCircle2 className="w-6 h-6 text-[#D8FF44]" />
               </div>
-              <p className="md:text-right">
+              <p>
                 Our work focuses on helping companies move away from scattered manual processes and toward organized, scalable digital operations. Whether a company needs accounting software, HR workflows, PBX systems, CRM setup, or customer support channels, Corevia Network provides the planning and implementation needed to make those systems work together.
               </p>
             </motion.div>
@@ -417,7 +449,7 @@ export default function App() {
                         type="text" 
                         id="fullName" 
                         required
-                        className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-1 focus:ring-[#D8FF44] transition-colors" 
+                        className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-2 focus:ring-[#D8FF44]/30 transition-all duration-300" 
                       />
                     </div>
                     <div>
@@ -426,7 +458,7 @@ export default function App() {
                         type="text" 
                         id="companyName" 
                         required
-                        className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-1 focus:ring-[#D8FF44] transition-colors" 
+                        className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-2 focus:ring-[#D8FF44]/30 transition-all duration-300" 
                       />
                     </div>
                   </div>
@@ -438,7 +470,7 @@ export default function App() {
                         type="email" 
                         id="email" 
                         required
-                        className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-1 focus:ring-[#D8FF44] transition-colors" 
+                        className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-2 focus:ring-[#D8FF44]/30 transition-all duration-300" 
                       />
                     </div>
                     <div>
@@ -446,7 +478,7 @@ export default function App() {
                       <input 
                         type="tel" 
                         id="phone" 
-                        className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-1 focus:ring-[#D8FF44] transition-colors" 
+                        className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-2 focus:ring-[#D8FF44]/30 transition-all duration-300" 
                       />
                     </div>
                   </div>
@@ -457,13 +489,13 @@ export default function App() {
                       id="message" 
                       rows={4}
                       required
-                      className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-1 focus:ring-[#D8FF44] transition-colors resize-none" 
+                      className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-2 focus:ring-[#D8FF44]/30 transition-all duration-300 resize-none" 
                     ></textarea>
                   </div>
                   
                   <button 
                     type="submit"
-                    className="w-full flex justify-center items-center gap-2 py-4 px-4 rounded-xl bg-[#D8FF44] text-[#0A0A0A] font-bold text-lg hover:bg-[#D3FF2B] transition-colors mt-4"
+                    className="w-full flex justify-center items-center gap-2 py-4 px-4 rounded-xl bg-[#D8FF44] text-[#0A0A0A] font-bold text-lg hover:bg-[#E4FF66] hover:scale-105 hover:shadow-[0_0_20px_rgba(216,255,68,0.4)] transition-all duration-300 mt-4"
                   >
                     Submit Message <ArrowRight className="w-5 h-5" />
                   </button>
