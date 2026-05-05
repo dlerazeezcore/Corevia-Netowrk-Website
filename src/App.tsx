@@ -85,12 +85,12 @@ export default function App() {
             <div className="flex-shrink-0 flex items-center">
               <a href="#home" onClick={handleAnchorClick}>
                 <img 
-                  src="/assets/corevia/corevia-network-logo.svg" 
+                  src="./assets/corevia/corevia-network-logo.svg" 
                   alt="Corevia Network" 
                   className="h-10 md:h-12 w-auto brightness-0 invert"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.src = "/assets/corevia/corevia-network-logo.png";
+                    target.src = "./assets/corevia/corevia-network-logo.png";
                   }}
                 />
               </a>
@@ -262,12 +262,12 @@ export default function App() {
             <div>
               <div className="flex items-center gap-4 mb-8 bg-[#1A1A1A] w-fit p-4 pr-8 rounded-2xl border border-[#4A4A4A]/50 shadow-lg">
                 <img 
-                  src="/assets/tulip-booking/tulip-booking-logo.svg" 
+                  src="./assets/tulip-booking/tulip-booking-logo.svg" 
                   alt="Tulip Booking" 
                   className="h-10 w-auto"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.src = "/assets/tulip-booking/tulip-booking-logo.png";
+                    target.src = "./assets/tulip-booking/tulip-booking-logo.png";
                   }}
                 />
                 <div className="h-8 w-px bg-[#4A4A4A]"></div>
@@ -512,12 +512,12 @@ export default function App() {
           <div className="grid md:grid-cols-2 gap-12 mb-12">
             <div>
               <img 
-                src="/assets/corevia/corevia-network-logo.svg" 
+                src="./assets/corevia/corevia-network-logo.svg" 
                 alt="Corevia Network" 
                 className="h-10 md:h-12 w-auto mb-6 brightness-0 invert"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.src = "/assets/corevia/corevia-network-logo.png";
+                  target.src = "./assets/corevia/corevia-network-logo.png";
                 }}
               />
               <p className="text-gray-400 max-w-sm text-lg">
