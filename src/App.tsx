@@ -167,6 +167,15 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
+              className="inline-block bg-[#D8FF44] text-[#0A0A0A] font-bold px-3 py-1 rounded-full text-sm mb-6"
+            >
+              GitHub Deployment Test 1
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
               className="w-16 h-1 bg-[#D8FF44] mb-8"
             ></motion.div>
             
