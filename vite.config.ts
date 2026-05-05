@@ -20,6 +20,7 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
+    base: process.env.GITHUB_PAGES === "true" ? "/Corevia-Netowrk-Website/" : "/",
     plugins: [
     figmaAssetResolver(),react(), tailwindcss()],
     resolve: {
