@@ -169,7 +169,7 @@ export default function App() {
               transition={{ duration: 0.6 }}
               className="inline-block bg-[#D8FF44] text-[#0A0A0A] font-bold px-3 py-1 rounded-full text-sm mb-6"
             >
-              GitHub Deployment Test 1
+              Deployment Test 2
             </motion.div>
             
             <motion.div 
