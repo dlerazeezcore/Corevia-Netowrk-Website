@@ -42,3 +42,11 @@ Build and refine a polished, premium, professional one-page portfolio website fo
 - React, Vite, Tailwind CSS. `motion/react` for scroll animations (`Fade In`, `whileInView`).
 - No placeholder text. All text must reflect the exact business copy of Corevia Network as seen in the website.
 - Do not redesign from scratch; preserve this precise layout and conceptual direction, simply continuing to refine it as needed.
+
+**5. Deployment Guardrails (Critical):**
+- AI Studio is the source of edit, but deployment must remain compatible with GitHub Pages + custom domain.
+- Never delete or rename `.github/workflows/deploy-pages.yml`.
+- Keep Vite `base` as `'/'` in `vite.config.ts` for custom domain publishing.
+- Do not switch Pages back to branch-only publishing assumptions (`/src/main.tsx` cannot be the production entry on GitHub Pages for Vite).
+- Preserve build output target as `dist` and keep SPA fallback generation (`dist/404.html` from `dist/index.html`) in the workflow.
+- If making deployment-related changes, keep them minimal and backward compatible with custom domain `corevia-network.com`.
