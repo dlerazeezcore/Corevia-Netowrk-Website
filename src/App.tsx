@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Menu, X, ArrowRight, CheckCircle2, Phone, Building, 
   Briefcase, Calculator, Users, Headset, Map,
-  Plane, Hotel, SmartphoneNfc, Car
+  Plane, Hotel, SmartphoneNfc, Car, ChevronUp
 } from 'lucide-react';
 
 export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [formStatus, setFormStatus] = useState<'idle' | 'success'>('idle');
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const navigation = [
     { name: 'Home', href: '#home' },
@@ -50,10 +67,35 @@ export default function App() {
     }
   ];
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormStatus('success');
-    setTimeout(() => setFormStatus('idle'), 5000);
+    setFormStatus('submitting');
+    
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    // Prevent redirect
+    formData.append('_captcha', 'false');
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/contact@corevia-network.com", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        setFormStatus('success');
+        form.reset();
+        setTimeout(() => setFormStatus('idle'), 5000);
+      } else {
+        setFormStatus('error');
+        setTimeout(() => setFormStatus('idle'), 5000);
+      }
+    } catch (error) {
+      console.error(error);
+      setFormStatus('error');
+      setTimeout(() => setFormStatus('idle'), 5000);
+    }
   };
 
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -447,7 +489,8 @@ export default function App() {
                       <label htmlFor="fullName" className="block text-sm font-medium text-gray-400 mb-2">Full Name</label>
                       <input 
                         type="text" 
-                        id="fullName" 
+                        id="fullName"
+                        name="name"
                         required
                         className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-2 focus:ring-[#D8FF44]/30 transition-all duration-300" 
                       />
@@ -456,7 +499,8 @@ export default function App() {
                       <label htmlFor="companyName" className="block text-sm font-medium text-gray-400 mb-2">Company Name</label>
                       <input 
                         type="text" 
-                        id="companyName" 
+                        id="companyName"
+                        name="company"
                         required
                         className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-2 focus:ring-[#D8FF44]/30 transition-all duration-300" 
                       />
@@ -468,7 +512,8 @@ export default function App() {
                       <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
                       <input 
                         type="email" 
-                        id="email" 
+                        id="email"
+                        name="email"
                         required
                         className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-2 focus:ring-[#D8FF44]/30 transition-all duration-300" 
                       />
@@ -477,7 +522,8 @@ export default function App() {
                       <label htmlFor="phone" className="block text-sm font-medium text-gray-400 mb-2">Phone Number</label>
                       <input 
                         type="tel" 
-                        id="phone" 
+                        id="phone"
+                        name="phone"
                         className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-2 focus:ring-[#D8FF44]/30 transition-all duration-300" 
                       />
                     </div>
@@ -486,7 +532,8 @@ export default function App() {
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">Message</label>
                     <textarea 
-                      id="message" 
+                      id="message"
+                      name="message"
                       rows={4}
                       required
                       className="w-full bg-[#0A0A0A] border border-[#4A4A4A] rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[#D8FF44] focus:ring-2 focus:ring-[#D8FF44]/30 transition-all duration-300 resize-none" 
@@ -495,10 +542,22 @@ export default function App() {
                   
                   <button 
                     type="submit"
-                    className="w-full flex justify-center items-center gap-2 py-4 px-4 rounded-xl bg-[#D8FF44] text-[#0A0A0A] font-bold text-lg hover:bg-[#E4FF66] hover:scale-105 hover:shadow-[0_0_20px_rgba(216,255,68,0.4)] transition-all duration-300 mt-4"
+                    disabled={formStatus === 'submitting'}
+                    className="w-full flex justify-center items-center gap-2 py-4 px-4 rounded-xl bg-[#D8FF44] text-[#0A0A0A] font-bold text-lg hover:bg-[#E4FF66] hover:scale-105 hover:shadow-[0_0_20px_rgba(216,255,68,0.4)] transition-all duration-300 mt-4 disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed"
                   >
-                    Submit Message <ArrowRight className="w-5 h-5" />
+                    {formStatus === 'submitting' ? (
+                      <span className="flex items-center gap-2">
+                        Sending... <div className="w-5 h-5 border-2 border-[#0A0A0A] border-t-transparent rounded-full animate-spin"></div>
+                      </span>
+                    ) : (
+                      <>
+                        Submit Message <ArrowRight className="w-5 h-5" />
+                      </>
+                    )}
                   </button>
+                  {formStatus === 'error' && (
+                    <p className="text-red-400 text-sm mt-4 text-center">There was an error sending your message. Please try again.</p>
+                  )}
                 </form>
               )}
             </motion.div>
@@ -541,9 +600,16 @@ export default function App() {
           </div>
 
           <div className="pt-8 border-t border-[#4A4A4A]/30 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-sm text-gray-500">
-              &copy; {new Date().getFullYear()} Corevia Network. All rights reserved.
-            </p>
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+              <p className="text-sm text-gray-500">
+                &copy; {new Date().getFullYear()} Corevia Network. All rights reserved.
+              </p>
+              <div className="flex gap-4">
+                <a href="#" className="text-sm text-gray-500 hover:text-white transition-colors">Privacy Policy</a>
+                <span className="text-[#4A4A4A] hidden md:inline">|</span>
+                <a href="#" className="text-sm text-gray-500 hover:text-white transition-colors">Terms of Service</a>
+              </div>
+            </div>
             
             <div className="flex gap-6 items-center">
               <a 
@@ -567,6 +633,22 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Scroll to Top Button */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-[#D8FF44] text-[#0A0A0A] shadow-[0_0_20px_rgba(216,255,68,0.3)] hover:scale-110 hover:bg-[#E4FF66] transition-all duration-300"
+            aria-label="Scroll to top"
+          >
+            <ChevronUp className="w-6 h-6" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
