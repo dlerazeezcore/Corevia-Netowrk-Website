@@ -6,6 +6,27 @@ import {
   Plane, Hotel, SmartphoneNfc, Car, ChevronUp
 } from 'lucide-react';
 
+const partners = [
+  { 
+    name: "Hasnan", 
+    logo: <span className="font-heading font-bold text-2xl tracking-tighter"><span className="text-[#D8FF44]">HAS</span>NAN.</span>, 
+    link: "https://hasnaniraq.com/#/",
+    description: "We started working in 2022. Everything began when the descendants of a fourth-generation grandfather, who owned a caravan of spices, decided to create an Anatolian brand in Mardin and spread it to the whole world. In this story,!"
+  },
+  { 
+    name: "Peak Travel", 
+    logo: <span className="font-heading font-medium text-2xl tracking-tight text-white">Peak<span className="text-gray-500 font-normal">Travel</span></span>, 
+    link: "#",
+    description: "Our travel subsidiary focused on delivering next-generation digital booking and corporate travel management solutions globally."
+  },
+  { 
+    name: "Tulip Booking", 
+    logo: <span className="font-heading font-bold text-2xl text-white flex items-center gap-2"><div className="w-5 h-5 rounded-sm bg-[#D8FF44] mb-1"></div>Tulip</span>, 
+    link: "#",
+    description: "Our proprietary travel application providing seamless hotel, flight, and transfer bookings with advanced operational integration."
+  }
+];
+
 export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -236,21 +257,79 @@ export default function App() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <a 
+              <motion.a 
                 href="#services" 
                 onClick={handleAnchorClick}
-                className="inline-flex justify-center items-center px-8 py-4 rounded-full bg-[#D8FF44] text-[#0A0A0A] font-bold text-lg hover:bg-[#E4FF66] transition-all duration-300 hover:scale-105 shadow-[0_0_15px_rgba(216,255,68,0.2)] hover:shadow-[0_0_30px_rgba(216,255,68,0.5)]"
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex justify-center items-center px-8 py-4 rounded-full bg-[#D8FF44] text-[#0A0A0A] font-bold text-lg hover:bg-[#E4FF66] transition-all duration-300 shadow-[0_0_15px_rgba(216,255,68,0.2)] hover:shadow-[0_0_30px_rgba(216,255,68,0.5)] md:hover:scale-105"
               >
                 Explore Our Services
-              </a>
-              <a 
+              </motion.a>
+              <motion.a 
                 href="#contact" 
                 onClick={handleAnchorClick}
-                className="inline-flex justify-center items-center px-8 py-4 rounded-full bg-transparent border-2 border-[#4A4A4A] text-white font-bold text-lg hover:border-[#D8FF44] hover:text-[#D8FF44] hover:scale-105 transition-all duration-300"
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex justify-center items-center px-8 py-4 rounded-full bg-transparent border-2 border-[#4A4A4A] text-white font-bold text-lg hover:border-[#D8FF44] hover:text-[#D8FF44] transition-all duration-300 md:hover:scale-105"
               >
                 Contact Us
-              </a>
+              </motion.a>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Marquee Section */}
+      <section id="partners" className="py-24 bg-[#0A0A0A] border-t border-[#4A4A4A]/20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+          <div className="mb-16 md:mb-24 flex flex-col items-center text-center">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-8 h-1 bg-[#D8FF44]"></div>
+              <h2 className="font-heading text-3xl md:text-5xl font-bold text-white tracking-tight">Our Partners</h2>
+              <div className="w-8 h-1 bg-[#D8FF44]"></div>
+            </div>
+            <p className="text-gray-400 max-w-2xl text-lg">
+              Collaborating with industry leaders and visionaries to structure the operational foundations of modern companies.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {partners.map((partner, index) => (
+              <motion.a 
+                key={index}
+                href={partner.link}
+                target={partner.link !== "#" ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className={`group block bg-[#161616] border border-[#3A3A3A] rounded-2xl p-8 hover:border-[#D8FF44]/70 transition-all duration-300 ${partner.link === "#" ? "cursor-default" : "cursor-pointer hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(216,255,68,0.15)]"} relative overflow-hidden`}
+                whileTap={partner.link !== "#" ? { scale: 0.98 } : {}}
+              >
+                {/* Glow effect perpetually visible but subtle */}
+                <motion.div 
+                  className="absolute -top-12 -right-12 p-8 opacity-40 group-hover:opacity-100 transition-opacity duration-500"
+                  animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: index * 0.2 }}
+                >
+                  <div className="w-32 h-32 bg-[#D8FF44]/10 rounded-full blur-3xl"></div>
+                </motion.div>
+
+                <div className="mb-6 flex items-center justify-between relative z-10">
+                  <div className="grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
+                    {partner.logo}
+                  </div>
+                  {partner.link !== "#" && (
+                    <ArrowRight className="text-[#4A4A4A] group-hover:text-[#D8FF44] transition-colors duration-300 w-5 h-5 -rotate-45 group-hover:rotate-0" />
+                  )}
+                </div>
+                
+                <h3 className="text-xl font-bold text-white mb-3">{partner.name}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {partner.description}
+                </p>
+              </motion.a>
+            ))}
           </div>
         </div>
       </section>
@@ -279,15 +358,28 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-[#1A1A1A] border border-[#4A4A4A]/50 rounded-2xl p-8 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(216,255,68,0.15)] hover:border-[#D8FF44]/70 transition-all duration-300 group relative overflow-hidden"
+                className="bg-[#161616] border border-[#D8FF44]/20 rounded-2xl p-8 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(216,255,68,0.2)] hover:border-[#D8FF44]/80 transition-all duration-300 group relative overflow-hidden shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+                whileTap={{ scale: 0.98 }}
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#D8FF44]/5 rounded-bl-[100px] -z-0 transition-transform duration-500 group-hover:scale-110"></div>
+                <motion.div 
+                  className="absolute top-0 right-0 w-40 h-40 bg-[#D8FF44]/10 rounded-bl-full -z-0 blur-xl"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.5, 0.8, 0.5]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.5
+                  }}
+                />
                 
-                <div className="w-14 h-14 bg-[#222] rounded-xl flex items-center justify-center mb-6 border border-[#333] group-hover:border-[#D8FF44]/60 group-hover:bg-[#D8FF44]/10 transition-all duration-300 relative z-10 group-hover:shadow-[0_0_15px_rgba(216,255,68,0.3)]">
-                  <service.icon className="w-6 h-6 text-gray-400 group-hover:text-[#D8FF44] transition-colors duration-300" />
+                <div className="w-16 h-16 bg-[#1A1A1A] rounded-xl flex items-center justify-center mb-6 border border-[#D8FF44]/30 shadow-[0_0_15px_rgba(216,255,68,0.1)] group-hover:border-[#D8FF44]/80 group-hover:bg-[#D8FF44]/20 transition-all duration-300 relative z-10 group-hover:shadow-[0_0_20px_rgba(216,255,68,0.4)]">
+                  <service.icon className="w-8 h-8 text-[#D8FF44]/80 group-hover:text-[#D8FF44] transition-colors duration-300" />
                 </div>
                 <h3 className="font-heading text-2xl font-bold text-white mb-4 group-hover:text-[#D8FF44] transition-colors relative z-10">{service.title}</h3>
-                <p className="text-gray-400 leading-relaxed relative z-10">
+                <p className="text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed relative z-10">
                   {service.description}
                 </p>
               </motion.div>
@@ -325,59 +417,73 @@ export default function App() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <a 
+                <motion.a 
                   href="https://apps.apple.com/us/app/tulip-booking/id6759516330" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-white text-black hover:bg-[#D8FF44] hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(216,255,68,0.3)] transition-all duration-300"
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-white text-black hover:bg-[#D8FF44] hover:shadow-[0_0_20px_rgba(216,255,68,0.3)] transition-all duration-300 md:hover:scale-[1.03]"
                 >
                   <div className="flex flex-col items-start leading-none">
                     <span className="text-[10px] uppercase font-bold text-gray-600">Download on the</span>
                     <span className="text-base font-bold">App Store</span>
                   </div>
-                </a>
-                <a 
+                </motion.a>
+                <motion.a 
                   href="https://play.google.com/store/apps/details?id=com.theesim.app&hl=en-US" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-white text-black hover:bg-[#D8FF44] hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(216,255,68,0.3)] transition-all duration-300"
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-white text-black hover:bg-[#D8FF44] hover:shadow-[0_0_20px_rgba(216,255,68,0.3)] transition-all duration-300 md:hover:scale-[1.03]"
                 >
                   <div className="flex flex-col items-start leading-none">
                     <span className="text-[10px] uppercase font-bold text-gray-600">GET IT ON</span>
                     <span className="text-base font-bold">Google Play</span>
                   </div>
-                </a>
+                </motion.a>
               </div>
             </div>
             
             <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl bg-[#1A1A1A] border border-[#4A4A4A] overflow-hidden flex items-center justify-center shadow-[0_0_50px_-12px_rgba(216,255,68,0.1)] relative group hover:border-[#D8FF44]/50 transition-colors duration-500">
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#173FFF]/10 via-transparent to-[#D8FF44]/5 opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="aspect-[4/3] rounded-2xl bg-[#1A1A1A] border border-[#4A4A4A] overflow-hidden flex items-center justify-center shadow-[0_0_50px_-12px_rgba(216,255,68,0.15)] relative group hover:border-[#D8FF44]/50 transition-colors duration-500">
+                <motion.div 
+                  className="absolute inset-0 opacity-50 flex items-center justify-center"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                >
+                  <div className="w-[150%] h-[150%] bg-[conic-gradient(from_0deg,transparent_0_340deg,rgba(216,255,68,0.2)_360deg)]"></div>
+                </motion.div>
+                <div className="absolute inset-[2px] bg-[#1A1A1A] rounded-2xl z-0"></div>
+                
                 <div className="grid grid-cols-2 gap-6 p-8 w-full h-full relative z-10">
-                  <div className="bg-[#222] rounded-2xl flex flex-col items-center justify-center gap-4 border border-[#333] hover:border-[#D8FF44] hover:bg-[#D8FF44]/5 transition-all duration-300 group/item">
-                    <motion.div animate={{ y: [0, -6, 0], scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}>
-                      <Hotel className="w-12 h-12 text-gray-400 group-hover/item:text-[#D8FF44] group-hover/item:drop-shadow-[0_0_8px_rgba(216,255,68,0.5)] transition-all duration-300" />
+                  <motion.div whileTap={{ scale: 0.95 }} className="bg-[#222] rounded-2xl flex flex-col items-center justify-center gap-4 border border-[#D8FF44]/20 shadow-[0_0_15px_rgba(216,255,68,0.05)] hover:border-[#D8FF44] hover:bg-[#D8FF44]/10 hover:shadow-[0_0_20px_rgba(216,255,68,0.2)] transition-all duration-300 group/item relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#D8FF44]/5 to-transparent opacity-50"></div>
+                    <motion.div animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}>
+                      <Hotel className="w-12 h-12 text-[#D8FF44]/70 group-hover/item:text-[#D8FF44] group-hover/item:drop-shadow-[0_0_10px_rgba(216,255,68,0.6)] transition-all duration-300 relative z-10" />
                     </motion.div>
-                    <span className="text-sm font-semibold text-gray-400 group-hover/item:text-white transition-colors tracking-wide uppercase">Hotels</span>
-                  </div>
-                  <div className="bg-[#222] rounded-2xl flex flex-col items-center justify-center gap-4 border border-[#333] hover:border-[#D8FF44] hover:bg-[#D8FF44]/5 transition-all duration-300 group/item">
-                    <motion.div animate={{ y: [0, -6, 0], scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 0.5 }}>
-                      <Plane className="w-12 h-12 text-gray-400 group-hover/item:text-[#D8FF44] group-hover/item:drop-shadow-[0_0_8px_rgba(216,255,68,0.5)] transition-all duration-300" />
+                    <span className="text-sm font-semibold text-gray-200 group-hover/item:text-white transition-colors tracking-wide uppercase relative z-10">Hotels</span>
+                  </motion.div>
+                  <motion.div whileTap={{ scale: 0.95 }} className="bg-[#222] rounded-2xl flex flex-col items-center justify-center gap-4 border border-[#D8FF44]/20 shadow-[0_0_15px_rgba(216,255,68,0.05)] hover:border-[#D8FF44] hover:bg-[#D8FF44]/10 hover:shadow-[0_0_20px_rgba(216,255,68,0.2)] transition-all duration-300 group/item relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#D8FF44]/5 to-transparent opacity-50"></div>
+                    <motion.div animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1 }}>
+                      <Plane className="w-12 h-12 text-[#D8FF44]/70 group-hover/item:text-[#D8FF44] group-hover/item:drop-shadow-[0_0_10px_rgba(216,255,68,0.6)] transition-all duration-300 relative z-10" />
                     </motion.div>
-                    <span className="text-sm font-semibold text-gray-400 group-hover/item:text-white transition-colors tracking-wide uppercase">Flights</span>
-                  </div>
-                  <div className="bg-[#222] rounded-2xl flex flex-col items-center justify-center gap-4 border border-[#333] hover:border-[#D8FF44] hover:bg-[#D8FF44]/5 transition-all duration-300 group/item">
-                    <motion.div animate={{ y: [0, -6, 0], scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 1 }}>
-                      <SmartphoneNfc className="w-12 h-12 text-gray-400 group-hover/item:text-[#D8FF44] group-hover/item:drop-shadow-[0_0_8px_rgba(216,255,68,0.5)] transition-all duration-300" />
+                    <span className="text-sm font-semibold text-gray-200 group-hover/item:text-white transition-colors tracking-wide uppercase relative z-10">Flights</span>
+                  </motion.div>
+                  <motion.div whileTap={{ scale: 0.95 }} className="bg-[#222] rounded-2xl flex flex-col items-center justify-center gap-4 border border-[#D8FF44]/20 shadow-[0_0_15px_rgba(216,255,68,0.05)] hover:border-[#D8FF44] hover:bg-[#D8FF44]/10 hover:shadow-[0_0_20px_rgba(216,255,68,0.2)] transition-all duration-300 group/item relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#D8FF44]/5 to-transparent opacity-50"></div>
+                    <motion.div animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 2 }}>
+                      <SmartphoneNfc className="w-12 h-12 text-[#D8FF44]/70 group-hover/item:text-[#D8FF44] group-hover/item:drop-shadow-[0_0_10px_rgba(216,255,68,0.6)] transition-all duration-300 relative z-10" />
                     </motion.div>
-                    <span className="text-sm font-semibold text-gray-400 group-hover/item:text-white transition-colors tracking-wide uppercase">eSIM</span>
-                  </div>
-                  <div className="bg-[#222] rounded-2xl flex flex-col items-center justify-center gap-4 border border-[#333] hover:border-[#D8FF44] hover:bg-[#D8FF44]/5 transition-all duration-300 group/item">
-                    <motion.div animate={{ y: [0, -6, 0], scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 1.5 }}>
-                      <Car className="w-12 h-12 text-gray-400 group-hover/item:text-[#D8FF44] group-hover/item:drop-shadow-[0_0_8px_rgba(216,255,68,0.5)] transition-all duration-300" />
+                    <span className="text-sm font-semibold text-gray-200 group-hover/item:text-white transition-colors tracking-wide uppercase relative z-10">eSIM</span>
+                  </motion.div>
+                  <motion.div whileTap={{ scale: 0.95 }} className="bg-[#222] rounded-2xl flex flex-col items-center justify-center gap-4 border border-[#D8FF44]/20 shadow-[0_0_15px_rgba(216,255,68,0.05)] hover:border-[#D8FF44] hover:bg-[#D8FF44]/10 hover:shadow-[0_0_20px_rgba(216,255,68,0.2)] transition-all duration-300 group/item relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#D8FF44]/5 to-transparent opacity-50"></div>
+                    <motion.div animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 3 }}>
+                      <Car className="w-12 h-12 text-[#D8FF44]/70 group-hover/item:text-[#D8FF44] group-hover/item:drop-shadow-[0_0_10px_rgba(216,255,68,0.6)] transition-all duration-300 relative z-10" />
                     </motion.div>
-                    <span className="text-sm font-semibold text-gray-400 group-hover/item:text-white transition-colors tracking-wide uppercase">Transfers</span>
-                  </div>
+                    <span className="text-sm font-semibold text-gray-200 group-hover/item:text-white transition-colors tracking-wide uppercase relative z-10">Transfers</span>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -397,19 +503,17 @@ export default function App() {
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-8">About Corevia Network</h2>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto relative">
-            {/* Center decorative line */}
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#4A4A4A] to-transparent transform -translate-x-1/2"></div>
-            
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto relative">
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-gray-400 space-y-6 text-lg leading-relaxed md:pr-8"
+              whileHover={{ y: -5 }}
+              className="text-gray-400 space-y-6 text-lg leading-relaxed bg-[#161616] p-8 md:p-10 rounded-3xl border border-[#2A2A2A] hover:border-[#D8FF44]/30 transition-all duration-500 shadow-xl"
             >
-              <div className="w-12 h-12 bg-[#1A1A1A] border border-[#4A4A4A] rounded-xl flex items-center justify-center mb-6">
-                <Building className="w-6 h-6 text-[#D8FF44]" />
+              <div className="w-14 h-14 bg-[#1A1A1A] border border-[#3A3A3A] rounded-xl flex items-center justify-center mb-6 shadow-inner">
+                <Building className="w-7 h-7 text-[#D8FF44]" />
               </div>
               <p>
                 Corevia Network is built to help companies operate with structure, clarity, and reliable systems. We combine consultancy, business software implementation, administration, HR support, communication systems, and sales support tools into one practical service model.
@@ -420,14 +524,15 @@ export default function App() {
             </motion.div>
             
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-              className="text-gray-400 space-y-6 text-lg leading-relaxed md:pl-8"
+              whileHover={{ y: -5 }}
+              className="text-gray-400 space-y-6 text-lg leading-relaxed bg-[#161616] p-8 md:p-10 rounded-3xl border border-[#2A2A2A] hover:border-[#D8FF44]/30 transition-all duration-500 shadow-xl"
             >
-              <div className="w-12 h-12 bg-[#1A1A1A] border border-[#4A4A4A] rounded-xl flex items-center justify-center mb-6">
-                <CheckCircle2 className="w-6 h-6 text-[#D8FF44]" />
+              <div className="w-14 h-14 bg-[#1A1A1A] border border-[#3A3A3A] rounded-xl flex items-center justify-center mb-6 shadow-inner">
+                <CheckCircle2 className="w-7 h-7 text-[#D8FF44]" />
               </div>
               <p>
                 Our work focuses on helping companies move away from scattered manual processes and toward organized, scalable digital operations. Whether a company needs accounting software, HR workflows, PBX systems, CRM setup, or customer support channels, Corevia Network provides the planning and implementation needed to make those systems work together.
@@ -540,8 +645,9 @@ export default function App() {
                     ></textarea>
                   </div>
                   
-                  <button 
+                  <motion.button 
                     type="submit"
+                    whileTap={{ scale: formStatus === 'submitting' ? 1 : 0.95 }}
                     disabled={formStatus === 'submitting'}
                     className="w-full flex justify-center items-center gap-2 py-4 px-4 rounded-xl bg-[#D8FF44] text-[#0A0A0A] font-bold text-lg hover:bg-[#E4FF66] hover:scale-105 hover:shadow-[0_0_20px_rgba(216,255,68,0.4)] transition-all duration-300 mt-4 disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed"
                   >
@@ -554,7 +660,7 @@ export default function App() {
                         Submit Message <ArrowRight className="w-5 h-5" />
                       </>
                     )}
-                  </button>
+                  </motion.button>
                   {formStatus === 'error' && (
                     <p className="text-red-400 text-sm mt-4 text-center">There was an error sending your message. Please try again.</p>
                   )}
