@@ -1,0 +1,40 @@
+/* ============================================================
+   Corevia Network — EFFECTS: radii, shadows, glows, motion
+   Soft depth on black; the signature is the LIME GLOW.
+   ============================================================ */
+:root {
+  /* ---- Corner radii ---- */
+  --radius-sm: 0.5rem;     /* 8  */
+  --radius-md: 0.75rem;    /* 12 — buttons, icon tiles, inputs */
+  --radius-lg: 1rem;       /* 16 — cards */
+  --radius-xl: 1.5rem;     /* 24 — large panels */
+  --radius-pill: 9999px;   /* CTA buttons */
+
+  /* ---- Shadows (deep, on black) ---- */
+  --shadow-sm: 0 0 15px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 20px 40px -20px rgba(0, 0, 0, 0.7);
+
+  /* ---- Lime glows (the brand signature) ---- */
+  --glow-faint: 0 0 15px rgba(216, 255, 68, 0.10);
+  --glow-soft: 0 0 15px rgba(216, 255, 68, 0.20);
+  --glow-md: 0 0 30px rgba(216, 255, 68, 0.20);
+  --glow-strong: 0 0 30px rgba(216, 255, 68, 0.50);
+  --glow-icon: 0 0 20px rgba(216, 255, 68, 0.40);
+
+  /* ---- Focus ring ---- */
+  --ring: 0 0 0 3px rgba(216, 255, 68, 0.30);
+
+  /* ---- Ambient background blurs (hero) ---- */
+  --blur-glow: 120px;
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 150ms;
+  --dur-base: 300ms;
+  --dur-slow: 500ms;
+
+  /* Lift used on hover for cards */
+  --lift: -8px;
+}

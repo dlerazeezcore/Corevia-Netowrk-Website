@@ -1,30 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Outfit:wght@400;500;600;700;800;900&display=swap');
-@import "tailwindcss";
-
-@theme {
-  --color-brand-base: #0A0A0A;
-  --color-brand-accent: #D8FF44;
-  --color-brand-accent-hover: #D3FF2B;
-  --color-brand-dark-gray: #4A4A4A;
-  --color-brand-blue: #173FFF;
-
-  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Outfit", ui-sans-serif, system-ui, sans-serif;
-
-  --animate-marquee: marquee 30s linear infinite;
-
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-}
-
-body {
-  background-color: var(--color-brand-base);
-  color: white;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
-}
+/* Corevia Network — global styles.
+   The design system tokens/base, then the V3 page styles. */
+@import "./design/styles.css";
+@import "./design/corevia-v3.css";

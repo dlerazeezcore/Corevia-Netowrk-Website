@@ -1,0 +1,41 @@
+/* Bnari Kodo — Radii, shadows, blur, motion tokens.
+   Soft premium cards: medium radius, layered low-spread shadows, navy-tinted. */
+
+:root {
+  /* ── Radii ── */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;     /* default card / input */
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-2xl: 36px;
+  --radius-pill: 999px;
+
+  /* ── Shadows — navy-tinted, soft, layered (not hard black) ── */
+  --shadow-xs: 0 1px 2px rgba(11, 31, 58, 0.06);
+  --shadow-sm: 0 2px 6px rgba(11, 31, 58, 0.07), 0 1px 2px rgba(11, 31, 58, 0.05);
+  --shadow-md: 0 8px 24px rgba(11, 31, 58, 0.09), 0 2px 6px rgba(11, 31, 58, 0.05);
+  --shadow-lg: 0 18px 48px rgba(11, 31, 58, 0.12), 0 4px 12px rgba(11, 31, 58, 0.06);
+  --shadow-xl: 0 32px 80px rgba(8, 23, 44, 0.20), 0 8px 24px rgba(8, 23, 44, 0.10);
+  --shadow-gold: 0 10px 30px rgba(168, 132, 63, 0.28);
+  --shadow-gold-glow: 0 0 0 1px rgba(200, 164, 93, 0.35), 0 8px 28px rgba(200, 164, 93, 0.30);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* Ring (focus) */
+  --ring-gold: 0 0 0 3px rgba(200, 164, 93, 0.35);
+  --ring-navy: 0 0 0 3px rgba(36, 76, 124, 0.30);
+
+  /* ── Glass / blur ── */
+  --blur-sm: blur(8px);
+  --blur-md: blur(16px);
+  --blur-lg: blur(28px);
+
+  /* ── Motion — elegant, slow, premium ── */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 160ms;
+  --dur-base: 280ms;
+  --dur-slow: 520ms;
+  --dur-reveal: 800ms;
+}

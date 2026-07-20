@@ -1,0 +1,51 @@
+/* Bnari Kodo — Typography tokens
+   Families: IBM Plex Sans Arabic (RTL + UI), Sora (Latin display). */
+
+:root {
+  /* ── Families ── */
+  --font-arabic: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-display: 'Sora', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-serif: 'Cormorant Garamond', 'Sora', Georgia, serif;
+  --font-ui: 'IBM Plex Sans Arabic', 'Sora', system-ui, sans-serif;
+  --font-num: 'Sora', 'IBM Plex Sans Arabic', sans-serif; /* tabular-feel numerals */
+
+  /* Default body family — overridden per dir via [dir] if needed */
+  --font-body: var(--font-arabic);
+
+  /* ── Weights ── */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* ── Type scale (fluid-ish, px) ── */
+  --fs-display-2xl: 76px;
+  --fs-display-xl: 60px;
+  --fs-display-lg: 48px;
+  --fs-h1: 38px;
+  --fs-h2: 30px;
+  --fs-h3: 24px;
+  --fs-h4: 20px;
+  --fs-lg: 18px;
+  --fs-base: 16px;
+  --fs-sm: 14px;
+  --fs-xs: 13px;
+  --fs-2xs: 11px;
+
+  /* ── Line heights — Kurdish needs generous leading to breathe ── */
+  --lh-tight: 1.12;
+  --lh-snug: 1.28;
+  --lh-display: 1.18;
+  --lh-heading: 1.4;
+  --lh-body: 1.75;
+  --lh-relaxed: 1.9;
+
+  /* ── Letter spacing (Latin only — never track Arabic) ── */
+  --ls-tight: -0.02em;
+  --ls-snug: -0.01em;
+  --ls-normal: 0;
+  --ls-wide: 0.04em;
+  --ls-caps: 0.14em;
+}

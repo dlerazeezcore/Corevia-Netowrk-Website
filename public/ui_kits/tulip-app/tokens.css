@@ -1,0 +1,166 @@
+/* Tulip Booking v2 — premium travel companion app
+   Design tokens: colors, type, spacing, shadows, motion.
+   Both light and dark themes — switch via [data-theme="dark"]. */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+.tulip {
+  /* ─── Brand ─── */
+  --tu-blue-50:  #EFF5FE;
+  --tu-blue-100: #DCE9FC;
+  --tu-blue-200: #B6D0F8;
+  --tu-blue-300: #7CAEF1;
+  --tu-blue-400: #3B82F6;
+  --tu-blue-500: #1967D2;
+  --tu-blue-600: #1557B0;
+  --tu-blue-700: #114A99;
+  --tu-blue-800: #0E3D7E;
+  --tu-blue-900: #0B2E5F;
+
+  /* ─── Semantic, light theme defaults ─── */
+  --bg:           #F9FAFB;
+  --bg-elev:     #FFFFFF;   /* card / popover */
+  --bg-elev-2:   #FFFFFF;   /* sheet */
+  --bg-sunken:  #F3F4F6;   /* input bg, list rail */
+  --fg:           #1F2937;
+  --fg-muted:    #717182;
+  --fg-faint:    #9AA0AB;
+  --border:      #ECECF0;
+  --border-strong: #D9DBE2;
+  --primary:     #1967D2;
+  --primary-hover: #1557B0;
+  --primary-active: #114A99;
+  --on-primary:  #FFFFFF;
+
+  --success:     #16A34A;
+  --warning:     #F59E0B;
+  --danger:      #DC2626;
+  --info:        var(--tu-blue-500);
+
+  --grad-hero: linear-gradient(135deg, #1967D2 0%, #1557B0 50%, #114A99 100%);
+
+  --shadow-1: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 1px rgba(15, 23, 42, 0.03);
+  --shadow-2: 0 4px 12px rgba(15, 23, 42, 0.06), 0 2px 4px rgba(15, 23, 42, 0.04);
+  --shadow-3: 0 12px 32px rgba(15, 23, 42, 0.10), 0 4px 8px rgba(15, 23, 42, 0.05);
+  --shadow-glow: 0 8px 24px rgba(25, 103, 210, 0.22);
+
+  /* ─── Radii ─── */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  /* ─── Spacing scale ─── */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px;
+  --s-5: 20px; --s-6: 24px; --s-7: 32px; --s-8: 40px;
+  --s-9: 48px; --s-10: 64px;
+
+  /* ─── Type ─── */
+  --font-display: 'Outfit', system-ui, sans-serif;
+  --font-body:    'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* ─── Motion ─── */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  font-family: var(--font-body);
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.tulip[data-theme="dark"] {
+  --bg:           #0B1120;
+  --bg-elev:     #141C2F;
+  --bg-elev-2:   #1A2236;
+  --bg-sunken:  #0F1729;
+  --fg:           #F8FAFC;
+  --fg-muted:    #94A3B8;
+  --fg-faint:    #64748B;
+  --border:      #1E293B;
+  --border-strong: #2A3A55;
+  --primary:     #3B82F6;
+  --primary-hover: #2563EB;
+  --primary-active: #1D4ED8;
+  --on-primary:  #FFFFFF;
+
+  --grad-hero: linear-gradient(135deg, #1E3A8A 0%, #1557B0 50%, #1967D2 100%);
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, 0.20);
+  --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.40), 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-3: 0 12px 32px rgba(0, 0, 0, 0.55), 0 4px 8px rgba(0, 0, 0, 0.30);
+  --shadow-glow: 0 8px 24px rgba(59, 130, 246, 0.32);
+}
+
+/* ─── Base atoms scoped to .tulip ─── */
+.tulip h1, .tulip h2, .tulip h3, .tulip h4 {
+  font-family: var(--font-display);
+  margin: 0;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  font-weight: 700;
+}
+.tulip h1 { font-size: 28px; line-height: 1.15; }
+.tulip h2 { font-size: 22px; line-height: 1.2; }
+.tulip h3 { font-size: 17px; line-height: 1.25; font-weight: 600; }
+.tulip p, .tulip span, .tulip div, .tulip a, .tulip button { font-family: inherit; }
+.tulip ::selection { background: rgba(59,130,246,0.25); }
+
+/* Reusable bits */
+.tu-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-1);
+}
+.tu-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 12px; border-radius: var(--r-pill);
+  font-size: 12px; font-weight: 600;
+  background: var(--bg-sunken); color: var(--fg-muted);
+}
+.tu-btn-primary {
+  background: var(--primary); color: var(--on-primary);
+  border: none; border-radius: var(--r-pill);
+  font-family: var(--font-display); font-weight: 600; font-size: 15px;
+  padding: 12px 22px; cursor: pointer;
+  box-shadow: var(--shadow-glow);
+  transition: background .15s var(--ease-out), transform .15s var(--ease-out);
+}
+.tu-btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
+.tu-btn-primary:active { background: var(--primary-active); transform: translateY(0); }
+
+/* Glass card used over hero */
+.tu-glass {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: var(--r-lg);
+  color: #fff;
+}
+
+/* Pulse dot */
+@keyframes tu-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55); }
+  70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+.tu-pulse-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #22C55E;
+  animation: tu-pulse 2s infinite;
+}
+
+/* Hidden scrollbars in artboards */
+.tulip *::-webkit-scrollbar { display: none; }
+.tulip * { scrollbar-width: none; }
+.tu-noscroll::-webkit-scrollbar { display: none; }
+.tu-noscroll { scrollbar-width: none; }
+
+/* Pressable lift used on cards/tiles */
+.tulip .tu-press { transition: transform .12s var(--ease-out), box-shadow .12s var(--ease-out), border-color .12s var(--ease-out); }
+.tulip .tu-press:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+.tulip .tu-press:active { transform: translateY(0); box-shadow: var(--shadow-1); }

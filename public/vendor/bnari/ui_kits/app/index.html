@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ku" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0B1F3A">
+<title>Bnari Kodo — Workspace</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="modules.css">
+<link rel="stylesheet" href="forms.css">
+</head>
+<body>
+
+<!-- ═════ LOGIN ═════ -->
+<section class="login-screen" id="loginScreen">
+  <aside class="login-aside">
+    <div class="brand">
+      <img src="../../assets/logo-mark.svg" alt="Bnari Kodo" style="width:54px;height:auto;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))">
+      <span class="brand-text">Bnari <b>Kodo</b></span>
+    </div>
+    <div class="pitch">
+      <div class="pin" style="top:34%;inset-inline-start:30%"><span class="ring"></span><span class="core"></span></div>
+      <div class="pin" style="top:54%;inset-inline-end:26%"><span class="ring" style="animation-delay:1s"></span><span class="core"></span></div>
+      <h2 data-en="Manage your office's real estate — securely, in one workspace.">موڵک و مامەڵەکانی ئۆفیسەکەت بەڕێوەببە — بە پارێزراوی، لە یەک شوێنی کاردا.</h2>
+      <p data-en="Properties, availabilities, partners, contracts, agreements, payments and reports.">موڵک، بەردەستی، هاوبەش، گرێبەست، ڕێککەوتن، پارەدان و ڕاپۆرت.</p>
+    </div>
+    <div class="lv-stats">
+      <div class="s"><div class="n">+40</div><div class="l" data-en="Companies">کۆمپانیا</div></div>
+      <div class="s"><div class="n">3,120</div><div class="l" data-en="Properties">موڵک</div></div>
+      <div class="s"><div class="n">940</div><div class="l" data-en="Contracts">گرێبەست</div></div>
+    </div>
+  </aside>
+  <main class="login-main">
+    <div class="lang-switch" data-langswitch>
+      <button data-lang="ku" class="active">کوردی</button>
+      <button data-lang="en">EN</button>
+    </div>
+    <div class="login-box">
+      <h1 data-en="Login">چوونەژوورەوە</h1>
+      <p class="sub" data-en="Sign in to your company workspace">بچۆ ناو شوێنی کاری کۆمپانیاکەت</p>
+      <div class="field">
+        <label data-en="Username">ناوی بەکارهێنەر</label>
+        <div class="ctl"><i data-lucide="user"></i><input type="text" value="rebin.k" placeholder="username"></div>
+      </div>
+      <div class="field">
+        <label data-en="Password">وشەی نهێنی</label>
+        <div class="ctl"><i data-lucide="lock"></i><input type="password" value="123456789"><i data-lucide="eye" id="pwToggle" style="cursor:pointer"></i></div>
+      </div>
+      <div class="login-row">
+        <div class="checkbox on" id="rememberMe"><span class="box"><i data-lucide="check"></i></span><span data-en="Remember me">بیرم بهێنەوە</span></div>
+        <span class="link-gold" data-en="Forgot password?">وشەی نهێنیت لەبیرکردووە؟</span>
+      </div>
+      <button class="btn btn-primary" id="loginBtn" style="width:100%;height:50px;font-size:15px" data-en="Login"><span data-en="Login">چوونەژوورەوە</span></button>
+    </div>
+  </main>
+</section>
+
+<!-- ═════ APP ═════ -->
+<div class="app" id="app">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="s-brand">
+      <img src="../../assets/logo-mark.svg" alt="Bnari Kodo" style="width:34px;height:auto">
+      <span class="brand-text">Bnari <b>Kodo</b></span>
+    </div>
+    <div class="workspace">
+      <span class="ws-logo"><img src="../../assets/logo-mark.svg" alt="" style="width:30px;height:auto"></span>
+      <div><div class="ws-name" data-en="Bnari Kodo">بناری کۆدۆ</div><div class="ws-plan" data-en="Real Estate · Erbil">خانووبەرە · هەولێر</div></div>
+      <i data-lucide="chevrons-up-down"></i>
+    </div>
+    <nav class="nav-scroll" id="navScroll"></nav>
+    <div class="s-foot">
+      <div class="s-user">
+        <span class="avatar" style="width:38px;height:38px;font-size:14px">RA</span>
+        <div><div class="nm" data-en="Rebin Ahmed">ڕێبین ئەحمەد</div><div class="rl" data-en="Office Manager">بەڕێوەبەری ئۆفیس</div></div>
+        <i data-lucide="log-out" style="margin-inline-start:auto;color:var(--navy-300);font-size:17px;cursor:pointer" id="logoutBtn"></i>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn"><i data-lucide="menu"></i></button>
+      <button class="topbar-logo" data-view="home" title="Bnari Kodo"><img src="../../assets/logo-mark.svg" alt="Bnari Kodo"></button>
+      <span class="page-title" id="pageTitle">داشبۆرد</span>
+      <div class="searchbar"><i data-lucide="search"></i><input placeholder="گەڕان بۆ موڵک، گرێبەست، هاوبەش..." data-en-ph="Search properties, contracts, partners..."></div>
+      <div class="lang-switch" data-langswitch>
+        <button data-lang="ku" class="active">کوردی</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <button class="icon-btn"><i data-lucide="bell"></i><span class="ping"></span></button>
+      <span class="avatar" style="width:40px;height:40px;font-size:14px">RA</span>
+    </header>
+    <div class="content" id="content"></div>
+  </div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<button class="fab" id="fab"><i data-lucide="plus"></i></button>
+<nav class="bottom-nav" id="bottomNav"></nav>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="data.js"></script>
+<script src="views.js"></script>
+<script src="modules.js"></script>
+<script src="forms.js"></script>
+<script src="reports.js"></script>
+<script src="settings.js"></script>
+<script src="print.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

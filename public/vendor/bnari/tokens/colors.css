@@ -1,0 +1,87 @@
+/* Bnari Kodo — Color tokens
+   Brand: Midnight Navy (#0B1F3A) + Champagne Gold (#C8A45D).
+   Neutrals are warm-leaning to harmonize with the gold. */
+
+:root {
+  /* ── Brand: Midnight Navy scale ── */
+  --navy-950: #060F1F;
+  --navy-900: #08172C;
+  --navy-800: #0B1F3A;   /* brand navy */
+  --navy-700: #112A4D;
+  --navy-600: #1A3A63;
+  --navy-500: #244C7C;
+  --navy-400: #3C6498;
+  --navy-300: #6A8AB4;
+  --navy-200: #A7BCD6;
+  --navy-100: #D6E1ED;
+  --navy-50:  #EDF2F8;
+
+  /* ── Brand: Champagne Gold scale ── */
+  --gold-900: #6E5424;
+  --gold-800: #8C6C30;
+  --gold-700: #A8843F;
+  --gold-600: #BC9248;
+  --gold-500: #C8A45D;   /* brand gold */
+  --gold-400: #D6B878;
+  --gold-300: #E3CD9A;
+  --gold-200: #EEDFBF;
+  --gold-100: #F6EEDD;
+  --gold-50:  #FBF7EE;
+
+  /* ── Warm neutrals ── */
+  --white:      #FFFFFF;
+  --paper:      #F8F7F3;   /* warm off-white — page background */
+  --gray-50:    #F4F5F7;
+  --gray-100:   #ECEEF2;
+  --gray-200:   #DEE2E8;
+  --gray-300:   #C7CDD6;
+  --gray-400:   #9BA3B0;
+  --gray-500:   #6C7585;
+  --gray-600:   #4C5563;
+  --gray-700:   #353D4A;
+  --charcoal:   #1E2733;
+  --ink:        #0E1620;
+
+  /* ── Status semantics (real-estate availability) ── */
+  --status-available:    #1F8A5B;  /* بەردەست */
+  --status-available-bg: #E6F4EC;
+  --status-reserved:     #B7892F;  /* ڕیزێرڤ */
+  --status-reserved-bg:  #F8EFD7;
+  --status-process:      #2C6F9E;  /* لە پرۆسەدایە */
+  --status-process-bg:   #E4EEF6;
+  --status-closed:       #586273;  /* داخراو */
+  --status-closed-bg:    #EBEDF1;
+  --status-unavailable:    #BF463E; /* ناتوانرێت */
+  --status-unavailable-bg: #F8E8E6;
+
+  /* ── Semantic surface + text aliases ── */
+  --bg-page:        var(--paper);
+  --bg-page-dark:   var(--navy-900);
+  --surface-card:   var(--white);
+  --surface-sunken: var(--gray-50);
+  --surface-glass:  rgba(255, 255, 255, 0.72);
+  --surface-glass-dark: rgba(11, 31, 58, 0.55);
+
+  --border-subtle:  var(--gray-200);
+  --border-strong:  var(--gray-300);
+  --border-gold:    var(--gold-500);
+
+  --text-strong:    var(--navy-800);
+  --text-body:      var(--gray-700);
+  --text-muted:     var(--gray-500);
+  --text-faint:     var(--gray-400);
+  --text-on-navy:   var(--gold-100);
+  --text-on-navy-strong: #FFFFFF;
+  --text-gold:      var(--gold-700);
+
+  --accent:         var(--gold-500);
+  --accent-strong:  var(--gold-700);
+  --brand:          var(--navy-800);
+
+  /* ── Signature gradients (subtle, premium — never garish) ── */
+  --grad-navy:   linear-gradient(160deg, #112A4D 0%, #0B1F3A 55%, #08172C 100%);
+  --grad-navy-deep: radial-gradient(120% 140% at 15% 0%, #1A3A63 0%, #0B1F3A 45%, #060F1F 100%);
+  --grad-gold:   linear-gradient(135deg, #E3CD9A 0%, #C8A45D 50%, #A8843F 100%);
+  --grad-gold-sheen: linear-gradient(105deg, #C8A45D 0%, #E8D6A8 45%, #C8A45D 70%, #BC9248 100%);
+  --grad-paper:  linear-gradient(180deg, #FFFFFF 0%, #F8F7F3 100%);
+}

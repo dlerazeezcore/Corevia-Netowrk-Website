@@ -1,0 +1,58 @@
+/* ============================================================
+   Corevia Network — TYPOGRAPHY TOKENS
+   Outfit (display/headings, 400–900) · Open Sans (body, 400–700)
+   · Montserrat (logo wordmark only).
+   ============================================================ */
+:root {
+  /* ---- Families ---- */
+  --font-heading: "Outfit", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body: "Open Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-logo: "Montserrat", "Outfit", ui-sans-serif, sans-serif;
+
+  /* ---- Weights ---- */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  --fw-black: 900;
+
+  /* ---- Type scale ---- */
+  --text-xs: 0.75rem;    /* 12 — captions, store badge eyebrow */
+  --text-sm: 0.875rem;   /* 14 — eyebrows, labels, footer */
+  --text-base: 1rem;     /* 16 — body */
+  --text-lg: 1.125rem;   /* 18 — lead body */
+  --text-xl: 1.25rem;    /* 20 — large body / section intro */
+  --text-2xl: 1.5rem;    /* 24 — card titles (h3) */
+  --text-3xl: 1.875rem;  /* 30 — partners heading sm */
+  --text-4xl: 2.25rem;   /* 36 — section heading (h2) */
+  --text-5xl: 3rem;      /* 48 — section heading lg / hero sm */
+  --text-6xl: 3.75rem;   /* 60 — hero md */
+  --text-7xl: 4.5rem;    /* 72 — hero lg */
+
+  /* ---- Line heights ---- */
+  --leading-tight: 1.1;    /* display headlines */
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65; /* body paragraphs */
+
+  /* ---- Letter spacing ---- */
+  --tracking-tighter: -0.03em; /* large headlines */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;     /* eyebrows (uppercase) */
+  --tracking-logo: 0.12em;     /* NETWORK in logo */
+
+  /* ============================================================
+     SEMANTIC TYPE ROLES
+     ============================================================ */
+  --type-hero-size: var(--text-7xl);
+  --type-hero-weight: var(--fw-extrabold);
+  --type-h2-size: var(--text-5xl);
+  --type-h2-weight: var(--fw-bold);
+  --type-h3-size: var(--text-2xl);
+  --type-h3-weight: var(--fw-bold);
+  --type-body-size: var(--text-lg);
+  --type-eyebrow-size: var(--text-sm);
+}

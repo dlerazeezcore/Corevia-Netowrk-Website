@@ -1,0 +1,75 @@
+/* ============================================================
+   Corevia Network — COLOR TOKENS
+   Premium dark, tech-forward. Deep black surfaces, a single
+   vibrant lime accent (#D8FF44), and a blue glow used only as
+   ambient background light.
+   ============================================================ */
+:root {
+  /* ---- Brand core ---- */
+  --lime: #D8FF44;            /* primary accent */
+  --lime-bright: #D3FF2B;     /* pressed / brightest */
+  --lime-hover: #E4FF66;      /* button hover (lighter, warmer) */
+  --lime-rgb: 216, 255, 68;   /* for rgba() glows & tints */
+  --blue: #173FFF;            /* ambient glow ONLY — never a fill */
+  --blue-rgb: 23, 63, 255;
+
+  /* ---- Ink / backgrounds (dark, layered) ---- */
+  --black-900: #050505;       /* deepest — footer */
+  --black-800: #0A0A0A;       /* page base */
+  --black-700: #111111;       /* alternating sections */
+  --black-600: #161616;       /* cards */
+  --black-500: #1A1A1A;       /* icon tiles, form panel */
+  --black-400: #222222;       /* inner cards / nested surfaces */
+
+  /* ---- Borders (cool grays, ascending strength) ---- */
+  --line-100: #2A2A2A;        /* subtle hairline */
+  --line-200: #3A3A3A;        /* default border */
+  --line-300: #4A4A4A;        /* strong / dark-gray */
+
+  /* ---- Text (white → muted grays) ---- */
+  --gray-100: #FFFFFF;        /* primary text, headings */
+  --gray-300: #D1D5DB;        /* secondary */
+  --gray-400: #9CA3AF;        /* body / muted */
+  --gray-500: #6B7280;        /* faint / captions */
+
+  /* ---- Accent tints (lime over dark) ---- */
+  --lime-08: rgba(216, 255, 68, 0.08);
+  --lime-10: rgba(216, 255, 68, 0.10);
+  --lime-20: rgba(216, 255, 68, 0.20);
+  --lime-30: rgba(216, 255, 68, 0.30);
+  --lime-80: rgba(216, 255, 68, 0.80);
+
+  /* ---- Status (used sparingly in product UI) ---- */
+  --danger: #F87171;
+  --success: var(--lime);
+
+  /* ============================================================
+     SEMANTIC ALIASES — prefer these in components
+     ============================================================ */
+  --bg-page: var(--black-800);
+  --bg-deep: var(--black-900);
+  --bg-section: var(--black-700);
+  --surface-card: var(--black-600);
+  --surface-panel: var(--black-500);
+  --surface-nested: var(--black-400);
+  --surface-input: var(--black-800);
+
+  --border-subtle: var(--line-100);
+  --border-default: var(--line-200);
+  --border-strong: var(--line-300);
+  --border-accent: var(--lime-20);
+
+  --accent: var(--lime);
+  --accent-hover: var(--lime-hover);
+  --accent-press: var(--lime-bright);
+
+  --text-primary: var(--gray-100);
+  --text-secondary: var(--gray-300);
+  --text-muted: var(--gray-400);
+  --text-faint: var(--gray-500);
+  --text-on-accent: var(--black-800);
+
+  --focus-ring: rgba(216, 255, 68, 0.30);
+  --selection-bg: var(--lime);
+  --selection-fg: var(--black-800);
+}

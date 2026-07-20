@@ -1,0 +1,58 @@
+/* Bnari Kodo — Base layer. Element defaults, RTL/LTR handling, helpers.
+   Imported last so tokens are available. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--text-body);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Direction defaults — Kurdish Sorani is the default (RTL) */
+[dir="rtl"] { font-family: var(--font-arabic); }
+[dir="ltr"] { font-family: var(--font-ui); }
+
+/* Latin numerals & Latin runs inside RTL keep display font */
+.num, .latin { font-family: var(--font-num); font-variant-numeric: tabular-nums; }
+
+h1, h2, h3, h4 {
+  color: var(--text-strong);
+  line-height: var(--lh-heading);
+  font-weight: var(--fw-semibold);
+  margin: 0;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+
+::selection { background: var(--gold-200); color: var(--navy-800); }
+
+/* Eyebrow / overline label — Latin tracking, gold */
+.bk-eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--text-gold);
+}
+[dir="rtl"] .bk-eyebrow { letter-spacing: 0; text-transform: none; font-family: var(--font-arabic); font-weight: var(--fw-semibold); }
+
+/* Focus visibility */
+:focus-visible { outline: none; box-shadow: var(--ring-gold); border-radius: var(--radius-sm); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
